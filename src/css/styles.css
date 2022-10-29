@@ -1,0 +1,13 @@
+.list {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+}
+
+.list-item:not(:last-child) {
+  margin-right: 30px;
+}
+
+.link {
+  text-decoration: none;
+}
