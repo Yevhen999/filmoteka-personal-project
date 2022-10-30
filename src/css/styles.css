@@ -11,3 +11,18 @@
 .link {
   text-decoration: none;
 }
+
+.markup-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: calc((1280px - 30) / 3);
+}
+
+.markup-list__item {
+  margin-right: 10px;
+}
+
+.markup-list__item:nth-child(4n + 4) {
+  margin-right: 0;
+}
