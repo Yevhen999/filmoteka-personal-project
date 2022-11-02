@@ -1,7 +1,6 @@
-import { Films } from './js/FilmsAPI';
+import { Films } from './js/api';
 import { createMarkup } from './js/markup';
 import { refs } from './js/refs';
-import { markupPlayer } from './js/markupPlayer';
 const basicLightbox = require('basiclightbox');
 import * as basicLightbox from 'basiclightbox';
 
@@ -22,8 +21,8 @@ async function getVideoById(currentId) {
     `https://api.themoviedb.org/3/movie/${currentId}/videos?api_key=9593e82df53f500ce20f9f064c8219d2&language=en-US`
   );
   const dataResult = await dataVideo.json();
-  const isId = dataResult.results[0].key;
-
+  const results = dataResult.results;
+  const isId = seekingTrailer(results);
   const instance = basicLightbox.create(` 
   <div class="modal">
   <iframe src="https://www.youtube.com/embed/${isId}" width="560" height="315" frameborder="0"></iframe></div>
@@ -38,7 +37,14 @@ function handleSubmit(event) {
   if (event.target.nodeName !== 'BUTTON') {
     return;
   }
-
-  console.log(event.target);
   getVideoById(event.target.id);
+}
+
+function seekingTrailer(objects) {
+  for (const object of objects) {
+    if (object.type === 'Trailer') {
+      console.log(object.key);
+      return object.key;
+    }
+  }
 }
