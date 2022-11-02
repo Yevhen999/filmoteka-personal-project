@@ -6,6 +6,12 @@ import * as basicLightbox from 'basiclightbox';
 
 const films = new Films();
 
+renderTrendingFilms();
+
+refs.listFilms.addEventListener('click', playTrailer);
+
+// render trending films//
+
 async function renderTrendingFilms() {
   const dataResult = await films.getTrendingFilms();
   const data = await dataResult.json();
@@ -14,9 +20,17 @@ async function renderTrendingFilms() {
   refs.listFilms.innerHTML = markup;
 }
 
-renderTrendingFilms();
+// click on button "play" //
 
-refs.listFilms.addEventListener('click', playTrailer);
+function playTrailer(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== 'BUTTON') {
+    return;
+  }
+  getVideoById(event.target.id);
+}
+
+// get id for a trailer//
 
 async function getVideoById(currentId) {
   const dataVideo = await films.fetchVideoById(currentId);
@@ -27,16 +41,13 @@ async function getVideoById(currentId) {
   <div class="modal">
   <iframe src="https://www.youtube.com/embed/${isId}" width="560" height="315" frameborder="0"></iframe></div>
   `);
+
+  // need options for iframe //
+
   instance.show();
 }
 
-function playTrailer(event) {
-  event.preventDefault();
-  if (event.target.nodeName !== 'BUTTON') {
-    return;
-  }
-  getVideoById(event.target.id);
-}
+// saerch a trailer only in videos //
 
 function searchTrailer(objects) {
   for (const object of objects) {
