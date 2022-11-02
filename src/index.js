@@ -6,15 +6,15 @@ import * as basicLightbox from 'basiclightbox';
 
 const films = new Films();
 
-async function handle() {
-  const dataResult = await films.getFilms();
+async function renderTrendingFilms() {
+  const dataResult = await films.getTrendingFilms();
   const data = await dataResult.json();
   console.log(data);
   const markup = createMarkup(data.results);
   refs.listFilms.innerHTML = markup;
 }
 
-handle();
+renderTrendingFilms();
 
 async function getVideoById(currentId) {
   const dataVideo = await fetch(
@@ -43,7 +43,6 @@ function handleSubmit(event) {
 function seekingTrailer(objects) {
   for (const object of objects) {
     if (object.type === 'Trailer') {
-      console.log(object.key);
       return object.key;
     }
   }
