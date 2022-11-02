@@ -16,13 +16,13 @@ async function renderTrendingFilms() {
 
 renderTrendingFilms();
 
+refs.listFilms.addEventListener('click', playTrailer);
+
 async function getVideoById(currentId) {
-  const dataVideo = await fetch(
-    `https://api.themoviedb.org/3/movie/${currentId}/videos?api_key=9593e82df53f500ce20f9f064c8219d2&language=en-US`
-  );
+  const dataVideo = await films.fetchVideoById(currentId);
   const dataResult = await dataVideo.json();
   const results = dataResult.results;
-  const isId = seekingTrailer(results);
+  const isId = searchTrailer(results);
   const instance = basicLightbox.create(` 
   <div class="modal">
   <iframe src="https://www.youtube.com/embed/${isId}" width="560" height="315" frameborder="0"></iframe></div>
@@ -30,9 +30,7 @@ async function getVideoById(currentId) {
   instance.show();
 }
 
-refs.listFilms.addEventListener('click', handleSubmit);
-
-function handleSubmit(event) {
+function playTrailer(event) {
   event.preventDefault();
   if (event.target.nodeName !== 'BUTTON') {
     return;
@@ -40,10 +38,11 @@ function handleSubmit(event) {
   getVideoById(event.target.id);
 }
 
-function seekingTrailer(objects) {
+function searchTrailer(objects) {
   for (const object of objects) {
     if (object.type === 'Trailer') {
       return object.key;
     }
+    // need notification here!
   }
 }
