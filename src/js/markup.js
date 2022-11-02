@@ -7,7 +7,7 @@ export function createMarkup(popularFilms) {
           <p>Title: ${title}</p>
           <p>genre_ids: ${genre_ids}</p>
           <p>id: ${id}</p
-        ></a>
+        ><button class="play__movie" id="${id}" type="button">>>play:${id}<<</button></a>        
       </li>`;
     })
     .join('');
