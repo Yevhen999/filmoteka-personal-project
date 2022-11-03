@@ -1,5 +1,6 @@
 export const refs = {
   listFilms: document.querySelector('.markup-list'),
+  searchForm: document.querySelector('.header__form-search'),
 };
 
-// console.log(refs.buttonPlay);
+// console.log(refs.searchForm);

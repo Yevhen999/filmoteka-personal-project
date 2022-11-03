@@ -3,12 +3,14 @@ import { createMarkup } from './js/markup';
 import { refs } from './js/refs';
 const basicLightbox = require('basiclightbox');
 import * as basicLightbox from 'basiclightbox';
+import Notiflix from 'notiflix';
 
 const films = new Films();
 
 renderTrendingFilms();
 
 refs.listFilms.addEventListener('click', playTrailer);
+refs.searchForm.addEventListener('submit', handleSearch);
 
 // render trending films//
 
@@ -18,6 +20,26 @@ async function renderTrendingFilms() {
   console.log(data);
   const markup = createMarkup(data.results);
   refs.listFilms.innerHTML = markup;
+}
+
+// get search movie //
+
+async function handleSearch(event) {
+  event.preventDefault();
+  const {
+    elements: { search },
+  } = event.currentTarget;
+  const searchQuery = search.value;
+  films.query = searchQuery;
+  console.log(films.query);
+
+  try {
+    const { data } = await films.getSearchMovie();
+
+    console.log(data);
+  } catch (error) {
+    console.log('error', error);
+  }
 }
 
 // click on button "play" //
@@ -57,3 +79,8 @@ function searchTrailer(objects) {
     // need notification here!
   }
 }
+// async function handle() {
+//   films.getSearchMovie();
+// }
+
+// handle();

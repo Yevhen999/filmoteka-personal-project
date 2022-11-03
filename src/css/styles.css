@@ -20,11 +20,11 @@ header {
   text-decoration: none;
 }
 
-.header__form {
+.header__form-search {
   text-align: center;
 }
 
-.header__search-field {
+.header__input-search {
   height: 30px;
 }
 
