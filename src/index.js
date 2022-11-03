@@ -29,14 +29,13 @@ async function handleSearch(event) {
   const {
     elements: { search },
   } = event.currentTarget;
-  const searchQuery = search.value;
+  const searchQuery = search.value.trim().toLowerCase();
   films.query = searchQuery;
   console.log(films.query);
 
   try {
     const { data } = await films.getSearchMovie();
     const { results } = data;
-    console.log(results);
     const markup = createMarkup(results);
     refs.listFilms.innerHTML = markup;
   } catch (error) {
