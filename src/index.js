@@ -79,8 +79,3 @@ function searchTrailer(objects) {
     // need notification here!
   }
 }
-// async function handle() {
-//   films.getSearchMovie();
-// }
-
-// handle();

@@ -21,16 +21,6 @@ export class Films {
     return dataMovie;
   }
 
-  // async getImages() {
-  //   const url = `https://pixabay.com/api/?key=30605118-54820a4d2e3a7aef14eca812a&q=${
-  //     this.#searchQuery
-  //   }&image_type=photo&orientation=horizontal&safesearch=true&per_page=${
-  //     this.#perPage
-  //   }&page=${this.#page}`;
-  //   const { data } = await axios.get(url);
-  //   return data;
-  // }
-
   async fetchVideoById(id) {
     const dataVideo = await fetch(
       `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=en-US`
