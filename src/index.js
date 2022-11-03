@@ -35,8 +35,10 @@ async function handleSearch(event) {
 
   try {
     const { data } = await films.getSearchMovie();
-
-    console.log(data);
+    const { results } = data;
+    console.log(results);
+    const markup = createMarkup(results);
+    refs.listFilms.innerHTML = markup;
   } catch (error) {
     console.log('error', error);
   }
