@@ -4,7 +4,7 @@ export function createMarkup(popularFilms) {
       let defaultPoster = `https://image.tmdb.org/t/p/w500/${poster_path}`;
       if (poster_path === null) {
         defaultPoster =
-          'https://motivatevalmorgan.com/wp-content/uploads/2016/06/default-movie.jpg';
+          'https://cdn.shopify.com/s/files/1/0378/3989/products/MimsUkrainePosterDigitalDownload-01_2048x.jpg';
       }
 
       return `<li class="markup-list__item">
