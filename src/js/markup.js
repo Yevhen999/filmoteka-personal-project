@@ -18,3 +18,4 @@ export function createMarkup(popularFilms) {
     })
     .join('');
 }
+// comment
